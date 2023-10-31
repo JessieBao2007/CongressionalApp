@@ -19,9 +19,10 @@ public class Quiz extends AppCompatActivity {
     public static int yardSize = 0;
     public int oftenPerWeek = 0;
     public static double sprinklerType = 0; //3 for fixed, 4 for rotating, 0.033 for drip irrigation
-    public int sprinklerCount = 0;
+    public static int sprinklerCount = 0;
     public int lengthMin = 0;
     public static int waterUsed = 0;
+    public static double yard3Days=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +67,7 @@ public class Quiz extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 yardSize = 3000; // Map the answer to a numeric value
+                yard3Days=600.0;
                 para1.setVisibility(View.VISIBLE);
             }
         });
@@ -74,6 +76,7 @@ public class Quiz extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 yardSize = 10000; // Map the answer to a numeric value
+                yard3Days=2000.0;
                 para1.setVisibility(View.VISIBLE);
             }
         });
@@ -82,6 +85,7 @@ public class Quiz extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 yardSize = 20000; // Map the answer to a numeric value
+                yard3Days=4000.0;
                 para1.setVisibility(View.VISIBLE);
             }
         });
@@ -105,6 +109,7 @@ public class Quiz extends AppCompatActivity {
 
                 try {
                     yardSize = Integer.parseInt(userAnswerText);
+                    yard3Days=0.2538*(double)(Integer.parseInt(userAnswerText));
                     // Now, the userAnswer variable contains the integer value of the user's input
                     // You can use it as an integer in your code.
                 } catch (NumberFormatException e) {
@@ -250,11 +255,18 @@ public class Quiz extends AppCompatActivity {
     public static double getSprinklerType(){
         return sprinklerType;
     }
+    public static double getYard3Days(){
+        return yard3Days;
+    }
+    public static int getSprinklerCount(){
+        return sprinklerCount;
+    }
 
     public void openHome(){
         Intent intent = new Intent(this, Home.class);
         startActivity(intent);
     }
+
 
 }
 

@@ -36,10 +36,11 @@ public class Schedule extends AppCompatActivity {
     private RelativeLayout ProgRelative;
     private TextView progtext;
     private Button done;
-    private double plantNum, rainGallons,sprinklerGallons, totalGallons, sprinklerType;
-    private int minutesVal, landArea, perc;
+    private double plantNum, rainGallons,sprinklerGallons,sprinklerType;
+    public static double totalGallons;
+    private int minutesVal,  perc, sprinklerCount;
     public static int saves;
-    private double totalRain;
+    public static double totalRain,landArea;
     private CalendarView calander;
 
     //plantNum-water amount for garden
@@ -56,15 +57,11 @@ public class Schedule extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_schedule);
 
-        Button home=(Button)findViewById(R.id.homeButton);
-        home.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                openHome();
-            }
-        });
-        Log.d("MyApp", "This is a debug message");        inputLocation = findViewById(R.id.input_location);
+
+
+        Log.d("MyApp", "This is a debug message");
         //outputLabel = findViewById(R.id.output_label);
+        inputLocation = findViewById(R.id.input_location);
         maindate = findViewById(R.id.main_date);
         mainpercent = findViewById(R.id.main_percent);
         mainmm = findViewById(R.id.main_mm);
@@ -90,18 +87,22 @@ public class Schedule extends AppCompatActivity {
         ProgRelative=findViewById(R.id.RelativeLayout4);
         ProgLine = findViewById(R.id.LineProgressBar);
         progtext=findViewById(R.id.LineBarText);
+        Sprinkler = findViewById(R.id.SprinklerText);
 
         done=findViewById(R.id.DoneButton);
 
-
-        sprinklerType=Quiz.getSprinklerType();
-        plantNum=Quiz.getYardSize();
-        landArea=Quiz.getYardSize();
-
-
-        totalRain=0.0;
+        plantNum=0.0;
+        rainGallons=0.0;
+        sprinklerGallons=0.0;
+        totalGallons=0.0;
+        minutesVal=0;
+        sprinklerType=0.0;
+        totalRain=0;
+        landArea=0;
+        sprinklerCount=0;
 
         calander = findViewById(R.id.calanderID);
+
         calander.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
@@ -116,21 +117,35 @@ public class Schedule extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 fetchWeatherData();
-                Log.d("MyApp", "button clicked");        inputLocation = findViewById(R.id.input_location);
+                Log.d("MyApp", "button clicked");
+                inputLocation = findViewById(R.id.input_location);
+                sprinklerType=Quiz.getSprinklerType();
+                plantNum=Quiz.getWaterUsed() /3;
+                landArea=Quiz.getYard3Days();
+                sprinklerCount=Quiz.getSprinklerCount();
+
 
             }
         });
 
 
-        done.setOnClickListener(new View.OnClickListener() {
+      done.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Sprinkler=findViewById(R.id.SprinklerText);
                 done.setVisibility(View.INVISIBLE);
                 Calculate(Integer.parseInt(Sprinkler.getText().toString()));
                 Log.d("MyApp", "buttonsss");
-                //to jiya code raingallons+ needed-total
 
+
+            }
+        });
+
+        Button home=(Button)findViewById(R.id.homeButton);
+        home.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                openHome();
             }
         });
     }
@@ -227,30 +242,33 @@ public class Schedule extends AppCompatActivity {
                     Prog3.setVisibility(View.VISIBLE);
 
 
-                    calander.setVisibility(View.VISIBLE);
 
 
-                    totalGallons=totalRain*landArea;
+                    totalGallons=(totalRain*0.0394)*landArea;
 
                     //Bar Text
                     String water= "There is a total of "+totalRain+" mm of rain in the next three days";
                     watertext.setText(water);
-                    minutesVal= (int)((plantNum - (totalRain))/sprinklerType);
-                    String needed="You need to water your plants for "+ minutesVal+ " minutes to reach your goal of "+plantNum+" gallons";
+                    double i = (landArea-totalGallons)/(sprinklerType*sprinklerCount);
+                    minutesVal= (int)(i);
+                    String needed="You need to water your plants for "+ minutesVal+ " minutes to reach your goal of "+landArea+" gallons";
                     neededtext.setText(needed);
                     String total= "You're plants will get a total of "+ totalGallons+" gallons of water";
                     totaltext.setText(total);
 
+
                     //Bar
+                    saves = (int)(totalGallons);
+                    perc=(int)((totalGallons/landArea)*100.0);
                     ProgRelative.setVisibility(View.VISIBLE);
                     Sprinkler.setVisibility(View.VISIBLE);
                     done.setVisibility(View.VISIBLE);
-                    perc=(int)((totalGallons/plantNum)*100.0);
                     ProgLine.setProgress(perc);
-                    progtext.setText(String.valueOf(perc));
+                    progtext.setText((String.valueOf(perc))+"%");
 
                     //result.append("Date: ").append(date).append(", Rainfall Amount (mm): ").append(rainfallAmount).append("\n");
-                    //}
+                    //}*/
+
 
 
                     /*if (plantNum > totalRain) {
@@ -277,15 +295,22 @@ public class Schedule extends AppCompatActivity {
 
     //value is sprinkler time person used
     public void Calculate(int value){
-        saves = (int)(rainGallons+ (plantNum-totalGallons));
-        totalGallons+= value * sprinklerType;
-        perc=(int)((totalGallons/plantNum)*100.0);
+        double watered = sprinklerCount*sprinklerType*value;
+        saves = (int)(plantNum - (totalGallons+(landArea-watered)));
+        if(saves <=0){
+            saves =0;
+        }
+        totalGallons+= (value * sprinklerType*sprinklerCount);
+        perc=(int)((totalGallons/landArea)*100.0);
+        if(perc>=99 &&perc<=101){
+            perc = 100;
+        }
         ProgLine.setProgress(perc);
-        progtext.setText(String.valueOf(perc));
+        progtext.setText(String.valueOf(perc)+"%");
     }
 
     public static int getsaves(){
-        return saves;
+        return saves+(int)((totalRain*0.0394)*landArea);
     }
 
     public void openHome(){
