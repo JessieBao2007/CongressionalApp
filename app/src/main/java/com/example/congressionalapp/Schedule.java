@@ -300,7 +300,10 @@ public class Schedule extends AppCompatActivity {
                     watertext.setText(water);
                     double i = (landArea-totalGallons)/(sprinklerType*sprinklerCount);
                     minutesVal= (int)(i);
-                    String needed="You need to water your plants for "+ minutesVal+ " minutes to reach your goal of "+landArea+" gallons";
+                    if(minutesVal<=0){
+                        minutesVal=0;
+                    }
+                    String needed="You need to water your plants for around "+ minutesVal+ " minutes to reach your goal of "+landArea+" gallons";
                     neededtext.setText(needed);
                     String total= "Your plants will get a total of "+ totalGallons+" gallons of water";
                     totaltext.setText(total);
