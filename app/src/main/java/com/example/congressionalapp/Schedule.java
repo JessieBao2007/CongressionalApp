@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -22,6 +23,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.DecimalFormat;
+
 import android.util.Log;
 
 
@@ -42,6 +45,10 @@ public class Schedule extends AppCompatActivity {
     public static int saves;
     public static double totalRain,landArea;
     private CalendarView calander;
+
+    //extra text
+    private TextView textMain, text2,text3;
+    private ImageView imageMain, image2,image3;
 
     //plantNum-water amount for garden
     //rainGallons-rain in gallons;
@@ -102,6 +109,17 @@ public class Schedule extends AppCompatActivity {
         sprinklerCount=0;
 
         calander = findViewById(R.id.calanderID);
+
+        //images
+        imageMain=findViewById(R.id.imageMain);
+        image2 = findViewById(R.id.image2);
+        image3 = findViewById(R.id.image3);
+
+        //extra text
+        textMain=findViewById(R.id.textMain);
+        text2=findViewById(R.id.text2);
+        text3=findViewById(R.id.text3);
+
 
         calander.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
@@ -208,6 +226,14 @@ public class Schedule extends AppCompatActivity {
                     mainpercent.setText(percentText);
                     MainProg.setProgress(percentAmount);
                     MainProg.setVisibility(View.VISIBLE);
+                    textMain.setVisibility(View.VISIBLE);
+                    if(percentAmount>50){
+                        imageMain.setImageResource(R.drawable.cloud);
+                        imageMain.setVisibility(View.VISIBLE);
+                    }
+                    else{
+                        imageMain.setVisibility(View.VISIBLE);
+                    }
 
 
                     //2
@@ -224,6 +250,14 @@ public class Schedule extends AppCompatActivity {
                     percent2.setText(percentText2);
                     Prog2.setProgress(percentAmount2);
                     Prog2.setVisibility(View.VISIBLE);
+                    text2.setVisibility(View.VISIBLE);
+                    if(percentAmount2>50){
+                        image2.setImageResource(R.drawable.cloud);
+                        image2.setVisibility(View.VISIBLE);
+                    }
+                    else{
+                        image2.setVisibility(View.VISIBLE);
+                    }
 
 
                     //3
@@ -240,11 +274,26 @@ public class Schedule extends AppCompatActivity {
                     percent3.setText(percentText3);
                     Prog3.setProgress(percentAmount3);
                     Prog3.setVisibility(View.VISIBLE);
+                    text3.setVisibility(View.VISIBLE);
+                    if(percentAmount3>50){
+                        image3.setImageResource(R.drawable.cloud);
+                        image3.setVisibility(View.VISIBLE);
+                    }
+                    else{
+                        image3.setVisibility(View.VISIBLE);
+                    }
+
 
 
 
 
                     totalGallons=(totalRain*0.0394)*landArea;
+                    DecimalFormat df = new DecimalFormat("#.##");
+                    String formatted = df.format(totalGallons);
+                    totalGallons = Double.parseDouble(formatted);
+
+                    String formatted2=df.format(totalRain);
+                    totalRain=Double.parseDouble(formatted2);
 
                     //Bar Text
                     String water= "There is a total of "+totalRain+" mm of rain in the next three days";
@@ -253,7 +302,7 @@ public class Schedule extends AppCompatActivity {
                     minutesVal= (int)(i);
                     String needed="You need to water your plants for "+ minutesVal+ " minutes to reach your goal of "+landArea+" gallons";
                     neededtext.setText(needed);
-                    String total= "You're plants will get a total of "+ totalGallons+" gallons of water";
+                    String total= "Your plants will get a total of "+ totalGallons+" gallons of water";
                     totaltext.setText(total);
 
 

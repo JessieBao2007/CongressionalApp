@@ -51,58 +51,105 @@
             android:id="@+id/main_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_medium"
             android:text=""
+            android:textColor="@color/white"
             android:textSize="20dp"
+            app:layout_constraintBottom_toTopOf="@+id/RelativeLayoutMain"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/RelativeLayoutMain"
-            android:textColor="@color/white"/>
+            app:layout_constraintTop_toTopOf="parent"/>
 
-        <RelativeLayout
+
+
+        <FrameLayout
+
             android:id="@+id/RelativeLayoutMain"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/main_date"
-            app:layout_constraintBottom_toTopOf="@+id/main_mm"
-            >
+            app:layout_constraintBottom_toTopOf="@+id/main_mm">
 
-            <ProgressBar
-                android:id="@+id/ProgressMain"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="200dp"
-                android:layout_height="200dp"
-                android:layout_centerInParent="true"
-                android:indeterminate="false"
-                android:max="100"
-                android:progress="0"
-                android:progressDrawable="@drawable/circular_progress_drawable"
-                android:visibility="invisible" />
-            <TextView
-                android:id="@+id/main_percent"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=""
-                android:textSize="50dp"
-                android:textColor="@color/white"
-                android:layout_centerInParent="true"
-                />
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/main_date"
+                    app:layout_constraintBottom_toTopOf="@+id/main_mm">
 
-        </RelativeLayout>
+                    <ProgressBar
+                        android:id="@+id/ProgressMain"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="200dp"
+                        android:layout_height="200dp"
+                        android:layout_centerInParent="true"
+                        android:indeterminate="false"
+                        android:max="100"
+                        android:progress="0"
+                        android:progressDrawable="@drawable/circular_progress_drawable"
+                        android:visibility="gone" />
+
+                    <ImageView
+                        android:id="@+id/imageMain"
+                        android:layout_width="200dp"
+                        android:layout_height="200dp"
+                        android:layout_centerInParent="true"
+                        android:alpha="0.9"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/sun"
+                        android:visibility="gone" />
+
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:orientation="vertical"
+                        android:gravity="center">
+
+
+                        <TextView
+                            android:id="@+id/main_percent"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:textSize="50dp"
+                            android:textColor="#072E49"
+                            android:fontFamily="@font/poppins_bold"/>
+
+                        <TextView
+                            android:id="@+id/textMain"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="chance of rain"
+                            android:textColor="#072E49"
+                            android:textSize="10dp"
+                            android:visibility="gone"
+                            android:fontFamily="@font/poppins_semibold"/>
+                    </LinearLayout>
+                </RelativeLayout>
+
+
+        </FrameLayout>
+
+
+
+
 
         <TextView
             android:id="@+id/main_mm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_semibold"
             android:text="Fill out quiz before starting"
+            android:textColor="@color/white"
             android:textSize="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/RelativeLayoutMain"
-            android:textColor="@color/white"
-            />
+            app:layout_constraintTop_toBottomOf="@+id/RelativeLayoutMain" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -132,9 +179,10 @@
                 android:id="@+id/fetch_button"
                 android:layout_width="200dp"
                 android:layout_height="50dp"
-                android:text="Find"
                 android:layout_marginTop="10dp"
                 android:backgroundTint="#92e2f0"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="Find"
                 android:textColor="#072E49"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.497"
@@ -145,13 +193,14 @@
                 android:id="@+id/input_location"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="Location (City)"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/hintborder"
+                android:fontFamily="@font/poppins_medium"
+                android:gravity="center"
+                android:hint="Location (City)"
+                android:inputType="text"
                 android:paddingStart="16dp"
                 android:paddingEnd="16dp"
-                android:gravity="center"
-                android:inputType="text"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -171,17 +220,24 @@
                     android:id="@+id/date2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_medium"
                     android:text=""
                     android:textSize="20dp"
+                    app:layout_constraintBottom_toTopOf="@id/RelativeLayout2"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toTopOf="@id/RelativeLayout2"
-                    />
+                    app:layout_constraintTop_toTopOf="parent" />
 
 
-                <RelativeLayout
+                <FrameLayout
                     android:id="@+id/RelativeLayout2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/date2"
+                    app:layout_constraintBottom_toTopOf="@+id/mm2">
+                <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -190,34 +246,68 @@
                     app:layout_constraintBottom_toTopOf="@+id/mm2"
                     >
 
-                    <ProgressBar
-                        android:id="@+id/Progress2"
-                        style="?android:attr/progressBarStyleHorizontal"
-                        android:layout_width="200dp"
-                        android:layout_height="200dp"
-                        android:max="100"
-                        android:progress="0"
-                        android:indeterminate="false"
-                        android:progressDrawable="@drawable/circular_progress_drawable"
-                        android:layout_centerInParent="true"
-                        android:visibility="invisible"/>
-                    <TextView
-                        android:id="@+id/percent2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text=""
-                        android:textSize="50dp"
-                        android:layout_centerInParent="true"
-                        android:textColor="#5e5e5e"
-                        />
+                            <ProgressBar
+                                android:id="@+id/Progress2"
+                                style="?android:attr/progressBarStyleHorizontal"
+                                android:layout_width="200dp"
+                                android:layout_height="200dp"
+                                android:layout_centerInParent="true"
+                                android:indeterminate="false"
+                                android:max="100"
+                                android:progress="0"
+                                android:progressDrawable="@drawable/circular_progress_drawable"
+                                android:visibility="invisible" />
 
-                </RelativeLayout>
+                            <ImageView
+                                android:id="@+id/image2"
+                                android:layout_width="200dp"
+                                android:layout_height="200dp"
+                                android:layout_centerInParent="true"
+                                android:alpha="0.9"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/sun"
+                                android:visibility="invisible" />
+
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_centerInParent="true"
+                                        android:orientation="vertical"
+                                        android:gravity="center">
+
+                                                <TextView
+                                                    android:id="@+id/percent2"
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:text=""
+                                                    android:textSize="50dp"
+                                                    android:layout_centerInParent="true"
+                                                    android:textColor="#072E49"
+                                                    android:fontFamily="@font/poppins_bold"
+                                                    />
+
+                                                    <TextView
+                                                        android:id="@+id/text2"
+                                                        android:layout_width="wrap_content"
+                                                        android:layout_height="wrap_content"
+                                                        android:text="chance of rain"
+                                                        android:textColor="#072E49"
+                                                        android:textSize="10dp"
+                                                        android:visibility="gone"
+                                                        android:fontFamily="@font/poppins_semibold"/>
+
+                                                </LinearLayout>
+
+                        </RelativeLayout>
+
+                </FrameLayout>
                 <TextView
                     android:id="@+id/mm2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=""
                     android:textSize="20dp"
+                    android:fontFamily="@font/poppins_semibold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/RelativeLayout2"
@@ -244,11 +334,21 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
+                    android:fontFamily="@font/poppins_medium"
                     />
 
 
-                <RelativeLayout
+                <FrameLayout
+
                     android:id="@+id/RelativeLayout3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/date3"
+                    app:layout_constraintBottom_toTopOf="@+id/mm3">
+
+                <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -269,6 +369,23 @@
                         android:layout_centerInParent="true"
                         android:visibility="invisible"/>
 
+                    <ImageView
+                        android:id="@+id/image3"
+                        android:layout_width="200dp"
+                        android:layout_height="200dp"
+                        android:layout_centerInParent="true"
+                        android:alpha="0.9"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/sun"
+                        android:visibility="invisible" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:orientation="vertical"
+                        android:gravity="center">
+
                     <TextView
                         android:id="@+id/percent3"
                         android:layout_width="wrap_content"
@@ -276,12 +393,26 @@
                         android:text=""
                         android:textSize="50dp"
                         android:layout_centerInParent="true"
-                        android:textColor="#5e5e5e"
+                        android:textColor="#072E49"
+                        android:fontFamily="@font/poppins_bold"
 
                         />
 
+                        <TextView
+                            android:id="@+id/text3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="chance of rain"
+                            android:textColor="#072E49"
+                            android:textSize="10dp"
+                            android:visibility="gone"
+                            android:fontFamily="@font/poppins_semibold" />
+
+                    </LinearLayout>
+
 
                 </RelativeLayout>
+                </FrameLayout>
 
                 <TextView
                     android:id="@+id/mm3"
@@ -292,6 +423,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/RelativeLayout3"
+                    android:fontFamily="@font/poppins_semibold"
                     />
 
                 <CalendarView
@@ -309,22 +441,28 @@
                 android:id="@+id/ProgressConstraint"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/constraintLayout3"
+                android:background="@drawable/elements_section_bg"
                 >
                 <TextView
                     android:id="@+id/RainWaterText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=""
-                    android:textSize="30dp"
+                    android:textSize="20dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
                     android:layout_marginTop="15dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toTopOf="@id/TotalWaterText"
                     android:gravity="center_horizontal"
+                    android:fontFamily="@font/poppins_semibold"
                     />
 
                 <TextView
@@ -332,13 +470,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=""
-                    android:textSize="50dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:textSize="40dp"
                     android:layout_marginTop="20dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/RainWaterText"
                     app:layout_constraintBottom_toTopOf="@id/NeededWaterText"
                     android:gravity="center_horizontal"
+                    android:fontFamily="@font/poppins_bold"
                     />
 
                 <TextView
@@ -346,12 +487,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=""
-                    android:textSize="30dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:textSize="20dp"
                     android:layout_marginTop="15dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/TotalWaterText"
                     android:gravity="center_horizontal"
+                    android:fontFamily="@font/poppins_semibold"
                     />
 
                 <RelativeLayout
@@ -381,7 +525,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
-                        android:text="0%" />
+                        android:text="0%"
+                        android:fontFamily="@font/poppins_semibold" />
 
                 </RelativeLayout>
 
@@ -397,6 +542,7 @@
                     android:paddingEnd="16dp"
                     android:gravity="center"
                     android:inputType="text"
+                    android:fontFamily="@font/poppins_semibold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/RelativeLayout4"
@@ -414,7 +560,8 @@
                     android:layout_marginBottom="20dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/SprinklerText"/>
+                    app:layout_constraintTop_toBottomOf="@id/SprinklerText"
+                    android:fontFamily="@font/poppins_medium"/>
 
 
 
@@ -440,9 +587,10 @@
             android:id="@+id/homeButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:backgroundTint="#87C8F4"
+            android:fontFamily="@font/poppins_bold"
             android:text="Home"
             android:textColorHighlight="#FFFFFF"
-            android:backgroundTint="#0576FF"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -450,3 +598,5 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+
