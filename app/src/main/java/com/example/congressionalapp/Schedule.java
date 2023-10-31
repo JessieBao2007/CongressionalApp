@@ -354,7 +354,7 @@ public class Schedule extends AppCompatActivity {
         }
         totalGallons+= (value * sprinklerType*sprinklerCount);
         perc=(int)((totalGallons/landArea)*100.0);
-        if(perc>=99 &&perc<=101){
+        if(perc>=95 &&perc<=101){
             perc = 100;
         }
         ProgLine.setProgress(perc);
