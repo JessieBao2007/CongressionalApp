@@ -16,6 +16,14 @@ public class Results extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_results);
 
+        Button home=(Button)findViewById(R.id.homeButton);
+        home.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                openHome();
+            }
+        });
+
         TextView gallonVal = findViewById(R.id.gallonVal);
         schedButton = findViewById(R.id.schedBtn);
         tipButton = findViewById(R.id.tipBtn);
@@ -47,6 +55,11 @@ public class Results extends AppCompatActivity {
 
     private void openSched() {
         Intent intent = new Intent(this, Schedule.class);
+        startActivity(intent);
+    }
+
+    public void openHome(){
+        Intent intent = new Intent(this, Home.class);
         startActivity(intent);
     }
 }

@@ -1,5 +1,6 @@
 package com.example.congressionalapp;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -39,6 +40,7 @@ public class Schedule extends AppCompatActivity {
     private int minutesVal, landArea, perc;
     public static int saves;
     private double totalRain;
+    private CalendarView calander;
 
     //plantNum-water amount for garden
     //rainGallons-rain in gallons;
@@ -53,6 +55,14 @@ public class Schedule extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_schedule);
+
+        Button home=(Button)findViewById(R.id.homeButton);
+        home.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                openHome();
+            }
+        });
         Log.d("MyApp", "This is a debug message");        inputLocation = findViewById(R.id.input_location);
         //outputLabel = findViewById(R.id.output_label);
         maindate = findViewById(R.id.main_date);
@@ -91,7 +101,7 @@ public class Schedule extends AppCompatActivity {
 
         totalRain=0.0;
 
-        CalendarView calander = findViewById(R.id.calanderID);
+        calander = findViewById(R.id.calanderID);
         calander.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
@@ -217,6 +227,9 @@ public class Schedule extends AppCompatActivity {
                     Prog3.setVisibility(View.VISIBLE);
 
 
+                    calander.setVisibility(View.VISIBLE);
+
+
                     totalGallons=totalRain*landArea;
 
                     //Bar Text
@@ -269,10 +282,14 @@ public class Schedule extends AppCompatActivity {
         perc=(int)((totalGallons/plantNum)*100.0);
         ProgLine.setProgress(perc);
         progtext.setText(String.valueOf(perc));
-        getsaves(saves);
     }
 
-    public static int getsaves(int num){
-        return num;
+    public static int getsaves(){
+        return saves;
+    }
+
+    public void openHome(){
+        Intent intent = new Intent(this, Home.class);
+        startActivity(intent);
     }
 }
