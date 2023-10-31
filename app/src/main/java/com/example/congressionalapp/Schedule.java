@@ -314,7 +314,7 @@ public class Schedule extends AppCompatActivity {
     }
 
     public void openHome(){
-        Intent intent = new Intent(this, Home.class);
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 }

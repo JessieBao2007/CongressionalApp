@@ -9,24 +9,66 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button homeButton;
-    
+    private Button quizButton;
+    private Button scheduleButton;
+    private Button waterSavedButton;
+    private Button tipsButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        homeButton = (Button) findViewById(R.id.homeBtn);
-        homeButton.setOnClickListener(new View.OnClickListener() {
+        quizButton = (Button) findViewById(R.id.quizBtn);
+        quizButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openHome();
+                openQuiz();
+            }
+        });
+
+        scheduleButton = (Button) findViewById(R.id.scheduleBtn);
+        scheduleButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openSchedule();
+            }
+        });
+
+        waterSavedButton = (Button) findViewById(R.id.waterSavedBtn);
+        waterSavedButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openWaterSaved();
+            }
+        });
+
+        tipsButton = (Button) findViewById(R.id.tipsBtn);
+        tipsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openTips();
             }
         });
     }
 
-    public void openHome() {
-        Intent intent = new Intent(this, Home.class);
+    public void openQuiz() {
+        Intent intent = new Intent(this, Quiz.class);
+        startActivity(intent);
+    }
+
+    public void openSchedule() {
+        Intent intent = new Intent(this, Schedule.class);
+        startActivity(intent);
+    }
+
+    public void openWaterSaved() {
+        Intent intent = new Intent(this, WaterSaved.class);
+        startActivity(intent);
+    }
+
+    public void openTips() {
+        Intent intent = new Intent(this, Tips.class);
         startActivity(intent);
     }
 }

@@ -7,7 +7,33 @@
     android:background="#072E49"
     tools:context=".MainActivity">
 
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-35dp"
+        android:fontFamily="@font/poppins_bold"
+        android:text="HydroScapes"
+        android:textColor="@color/white"
+        android:textSize="32dp"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/hydrologo" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout2"
         android:layout_width="match_parent"
         android:layout_height="480dp"
         android:background="@drawable/white_page_bg"
@@ -17,7 +43,7 @@
 
         <LinearLayout
             android:layout_width="300dp"
-            android:layout_height="270dp"
+            android:layout_height="360dp"
             android:layout_marginTop="20dp"
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
@@ -30,7 +56,7 @@
                 android:layout_height="60dp"
                 android:layout_margin="15dp"
                 android:backgroundTint="#87C8F4"
-                android:text="Log In" />
+                android:text="Quiz" />
 
             <Button
                 android:id="@+id/scheduleBtn"
@@ -38,16 +64,25 @@
                 android:layout_height="60dp"
                 android:layout_margin="15dp"
                 android:backgroundTint="#87C8F4"
-                android:text="Sign Up" />
+                android:text="Schedule" />
+
+            <Button
+                android:id="@+id/waterSavedBtn"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_margin="15dp"
+                android:backgroundTint="#87C8F4"
+                android:text="Water Saved" />
+
+            <Button
+                android:id="@+id/tipsBtn"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_margin="15dp"
+                android:backgroundTint="#87C8F4"
+                android:text="Tips" />
 
         </LinearLayout>
-
-        <Button
-            android:id="@+id/homeBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="USE THIS FOR NOW"
-            tools:layout_editor_absoluteX="160dp"
-            tools:layout_editor_absoluteY="372dp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
